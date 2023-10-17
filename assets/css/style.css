@@ -21,7 +21,7 @@ header {
     align-items: center;
     padding: 0 2%;
     border-bottom: 1px solid grey;
-    /* color: #f28c26; */
+    color: #ffaf5e;
 }
 
 #controls {
@@ -35,8 +35,24 @@ header {
     border-radius: 8px;
 }
 
-#microphone-icon {
+#microphone-link {
     font-size: 3rem;
+}
+
+#microphone-icon {
+    text-decoration: none;
+    color: #15c415;
+}
+
+#text-size-controls {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-control {
+    width: 3rem;
+    font-size: 3rem;
+    margin: 2%;
 }
 
 #text-container {
@@ -53,8 +69,10 @@ header {
     border-radius: 8px;
     height: 96%;
     width: 96%;
+    font-size: 3rem;
 }
 
 p {
-    font-size: 3rem;
+    /* font-size: 3rem; */
+    padding-bottom: 4%;
 }

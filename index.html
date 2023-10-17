@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://kit.fontawesome.com/1898f2e833.js" crossorigin="anonymous"></script>
-    <title>Transcriber</title>
+    <title>transcriber</title>
 </head>
 
 <body>
@@ -16,13 +16,18 @@
 
     <main>
         <div id="controls">
-            <a href="#" id="microphone-icon">
-                <i class="fa-solid fa-microphone"></i>
+            <a href="#" id="microphone-link">
+                <i class="fa-solid fa-microphone" id="microphone-icon"></i>
             </a>
+            <div id="text-size-controls">
+                <button class="text-control font-decrease">-</button>
+                <p>aA</p>
+                <button class="text-control font-increase">+</button>
+            </div>
         </div>
 
         <div id="text-container">
-            <p id="text-area"></p>
+            <div id="text-area"></div>
         </div>
     </main>
 
