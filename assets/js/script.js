@@ -82,14 +82,14 @@ function decreaseFontSize() {
     textArea.style.fontSize = fontSize + "rem";
 }
 
-function copyToClipboard() {
-    textArea.selected();
-    textArea.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text area
-    navigator.clipboard.writeText(textArea.value);
-
-    alert("Copied to the clipboard");
+async function copyToClipboard() {
+    let text = textArea.innerHTML;
+    try {
+        await navigator.clipboard.writeText(text);
+        alert("Copied to the clipboard");
+    } catch (err) {
+        alert("Error: Failed to copy: " + err);
+    }
 }
 
 decreaseFontBtn.addEventListener("click", decreaseFontSize);
