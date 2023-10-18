@@ -29,7 +29,7 @@ header {
     margin: 2%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 #controls i {
@@ -44,13 +44,15 @@ header {
 
 .fa-minus,
 .fa-plus,
-.fa-copy {
+.fa-copy,
+.fa-trash-can {
     color: #559df8;
 }
 
 .fa-minus:hover,
 .fa-plus:hover,
-.fa-copy:hover {
+.fa-copy:hover,
+.fa-trash-can:hover {
     color: #1479F5;
 }
 
@@ -63,7 +65,7 @@ header {
     color: #15c415;
 }
 
-#microphone-icon:hover {
+#microphone-icon {
     color: #0E810E;
 }
 

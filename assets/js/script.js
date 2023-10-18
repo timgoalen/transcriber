@@ -12,12 +12,12 @@ const textArea = document.getElementById("text-area");
 const decreaseFontBtn = document.querySelector(".font-decrease");
 const increaseFontBtn = document.querySelector(".font-increase");
 const copyBtn = document.getElementById("copy-to-clipboard");
-
+const trashCan = document.querySelector(".fa-trash-can");
 
 // Initialize variables
 let recognising = false;
 let recognition = new SpeechRecognition();
-let paragraph = document.createElement('p');
+let paragraph = document.createElement("p");
 
 // Set recognition settings
 recognition.continuous = true;
@@ -41,6 +41,7 @@ recognition.onresult = function (event) {
         const pElement = document.createElement("p");
         pElement.textContent = finalTranscript;
         textArea.appendChild(pElement);
+        readOutLoud(finalTranscript);
     }
 
     // Append interim transcript to the existing content
@@ -54,6 +55,12 @@ microphoneIcon.addEventListener("click", function () {
         recognition.stop();
         microphoneIcon.style.color = "#15c415";
         textArea.style.border = "1px solid black";
+        // const paragraphs = document.querySelectorAll("p");
+        // for (let para of paragraphs) {
+        //     readOutLoud(para.innerHTML);
+        // }
+        let para = document.querySelector("p");
+        // readOutLoud(para.innerHTML);
     } else {
         recognition.start();
         microphoneIcon.style.color = "#e40000";
@@ -69,7 +76,7 @@ recognition.onerror = function (event) {
 };
 
 // Initial font size
-let fontSize = 3; // You can set your desired initial font size here
+let fontSize = 3;
 
 // Function to increase font size
 function increaseFontSize() {
@@ -83,7 +90,7 @@ function decreaseFontSize() {
 }
 
 async function copyToClipboard() {
-    let text = textArea.innerHTML;
+    let text = textArea.textContent;
     try {
         await navigator.clipboard.writeText(text);
         alert("Copied to the clipboard");
@@ -92,8 +99,26 @@ async function copyToClipboard() {
     }
 }
 
+function clearText() {
+    textArea.innerHTML = "";
+}
+
+function readOutLoud(message) {
+    var speech = new SpeechSynthesisUtterance();
+  
+    // Set the text and voice attributes.
+    speech.text = message;
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
+  
+    window.speechSynthesis.speak(speech);
+  }
+
 decreaseFontBtn.addEventListener("click", decreaseFontSize);
 
 increaseFontBtn.addEventListener("click", increaseFontSize);
 
 copyBtn.addEventListener("click", copyToClipboard);
+
+trashCan.addEventListener("click", clearText);
