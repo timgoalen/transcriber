@@ -22,6 +22,7 @@ let paragraph = document.createElement("p");
 // Set recognition settings
 recognition.continuous = true;
 recognition.interimResults = true;
+recognition.lang = "en-UK";
 
 recognition.onresult = function (event) {
     let interimTranscript = "";
@@ -41,11 +42,11 @@ recognition.onresult = function (event) {
         const pElement = document.createElement("p");
         pElement.textContent = finalTranscript;
         textArea.appendChild(pElement);
-        readOutLoud(finalTranscript);
+        // readOutLoud(finalTranscript);
     }
 
     // Append interim transcript to the existing content
-    textArea.innerHTML += "<span style='color: gray;'>" + transcript + "</span>";
+    // textArea.innerHTML += "<span style='color: gray;'>" + transcript + "</span>";
 };
 
 
