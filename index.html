@@ -16,13 +16,22 @@
 
     <main>
         <div id="controls">
-            <a href="#" id="microphone-link">
+            <div id="microphone-container">
                 <i class="fa-solid fa-microphone" id="microphone-icon"></i>
-            </a>
+            </div>
+
             <div id="text-size-controls">
-                <button class="text-control font-decrease">-</button>
-                <p>aA</p>
-                <button class="text-control font-increase">+</button>
+                <div>
+                    <i class="fa-solid fa-minus text-control font-decrease"></i>
+                </div>
+                <div class="text-control characters">Text</div>
+                <div>
+                    <i class="fa-solid fa-plus text-control font-increase"></i>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-regular fa-copy" id="copy-to-clipboard"></i>
             </div>
         </div>
 

@@ -20,23 +20,42 @@ header {
     flex-direction: row;
     align-items: center;
     padding: 0 2%;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid black;
     color: #ffaf5e;
 }
 
 #controls {
     height: 7%;
     margin: 2%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    border: 1px solid grey;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-#microphone-link {
-    font-size: 3rem;
+#controls i {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.characters {
+    font-size: 1.5rem;
+    color: #e4e4e4;
+}
+
+.fa-minus,
+.fa-plus,
+.fa-copy {
+    color: #559df8;
+}
+
+.fa-minus:hover,
+.fa-plus:hover,
+.fa-copy:hover {
+    color: #1479F5;
+}
+
+#microphone-container {
+    /* font-size: 3rem; */
 }
 
 #microphone-icon {
@@ -44,15 +63,18 @@ header {
     color: #15c415;
 }
 
+#microphone-icon:hover {
+    color: #0E810E;
+}
+
 #text-size-controls {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .text-control {
-    width: 3rem;
-    font-size: 3rem;
-    margin: 2%;
+    margin: 0 20%;
 }
 
 #text-container {
@@ -65,7 +87,7 @@ header {
 
 #text-area {
     padding: 2%;
-    border: 1px solid grey;
+    border: 1px solid black;
     border-radius: 8px;
     height: 96%;
     width: 96%;

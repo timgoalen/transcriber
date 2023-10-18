@@ -1,17 +1,17 @@
 try {
     var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  }
-  catch(e) {
-    alert("Your browser doesn't support speech recognition. Try on Chrome or Firefox.")
-  }
+} catch (e) {
+    alert("Your browser doesn't support speech recognition. Try using Chrome or Firefox.")
+}
 
 const controls = document.getElementById("controls");
-const microphoneLink = document.getElementById("microphone-link");
+const microphoneContainer = document.getElementById("microphone-container");
 const microphoneIcon = document.getElementById("microphone-icon");
 const textContainer = document.getElementById("text-container");
 const textArea = document.getElementById("text-area");
 const decreaseFontBtn = document.querySelector(".font-decrease");
 const increaseFontBtn = document.querySelector(".font-increase");
+const copyBtn = document.getElementById("copy-to-clipboard");
 
 
 // Initialize variables
@@ -53,9 +53,11 @@ microphoneIcon.addEventListener("click", function () {
     if (recognising) {
         recognition.stop();
         microphoneIcon.style.color = "#15c415";
+        textArea.style.border = "1px solid black";
     } else {
         recognition.start();
         microphoneIcon.style.color = "#e40000";
+        textArea.style.border = "1px solid #e40000";
     }
 
     recognising = !recognising;
@@ -80,6 +82,18 @@ function decreaseFontSize() {
     textArea.style.fontSize = fontSize + "rem";
 }
 
+function copyToClipboard() {
+    textArea.selected();
+    textArea.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text area
+    navigator.clipboard.writeText(textArea.value);
+
+    alert("Copied to the clipboard");
+}
+
 decreaseFontBtn.addEventListener("click", decreaseFontSize);
 
 increaseFontBtn.addEventListener("click", increaseFontSize);
+
+copyBtn.addEventListener("click", copyToClipboard);
