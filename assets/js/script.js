@@ -11,7 +11,6 @@ const textContainer = document.getElementById("text-container");
 const textArea = document.getElementById("text-area");
 const decreaseFontBtn = document.querySelector(".font-decrease");
 const increaseFontBtn = document.querySelector(".font-increase");
-const copyBtn = document.getElementById("copy-to-clipboard");
 const trashCan = document.querySelector(".fa-trash-can");
 
 // Initialize variables
@@ -39,9 +38,11 @@ recognition.onresult = function (event) {
 
     // Create a new <p> element for each final transcript
     if (finalTranscript) {
-        const pElement = document.createElement("p");
-        pElement.textContent = finalTranscript;
-        textArea.appendChild(pElement);
+        // const pElement = document.createElement("p");
+        // pElement.textContent = finalTranscript;
+        // textArea.appendChild(pElement);
+        let interimText = textArea.value;
+        textArea.value = interimText + " " + finalTranscript;
         // readOutLoud(finalTranscript);
     }
 
@@ -54,8 +55,9 @@ recognition.onresult = function (event) {
 microphoneIcon.addEventListener("click", function () {
     if (recognising) {
         recognition.stop();
-        microphoneIcon.style.color = "#15c415";
-        textArea.style.border = "1px solid black";
+        microphoneContainer.style.color = "var(--orange)";
+        microphoneContainer.style.border = "1px solid var(--orange)";
+        textArea.style.border = "1px solid var(--grey)";
         // const paragraphs = document.querySelectorAll("p");
         // for (let para of paragraphs) {
         //     readOutLoud(para.innerHTML);
@@ -64,8 +66,9 @@ microphoneIcon.addEventListener("click", function () {
         // readOutLoud(para.innerHTML);
     } else {
         recognition.start();
-        microphoneIcon.style.color = "#e40000";
-        textArea.style.border = "1px solid #e40000";
+        microphoneContainer.style.color = "var(--red)";
+        microphoneContainer.style.border = "1px solid var(--red)";
+        textArea.style.border = "1px solid var(--red)";
     }
 
     recognising = !recognising;
@@ -77,27 +80,17 @@ recognition.onerror = function (event) {
 };
 
 // Initial font size
-let fontSize = 3;
+let fontSize = 1.25;
 
 // Function to increase font size
 function increaseFontSize() {
-    fontSize += 1; // Increase the font size by 2 pixels (you can adjust this value)
+    fontSize += 0.2;
     textArea.style.fontSize = fontSize + "rem";
 }
 
 function decreaseFontSize() {
-    fontSize -= 1; // decrease the font size by 2 pixels (you can adjust this value)
+    fontSize -= 0.2;
     textArea.style.fontSize = fontSize + "rem";
-}
-
-async function copyToClipboard() {
-    let text = textArea.textContent;
-    try {
-        await navigator.clipboard.writeText(text);
-        alert("Copied to the clipboard");
-    } catch (err) {
-        alert("Error: Failed to copy: " + err);
-    }
 }
 
 function clearText() {
@@ -119,7 +112,5 @@ function readOutLoud(message) {
 decreaseFontBtn.addEventListener("click", decreaseFontSize);
 
 increaseFontBtn.addEventListener("click", increaseFontSize);
-
-copyBtn.addEventListener("click", copyToClipboard);
 
 trashCan.addEventListener("click", clearText);
