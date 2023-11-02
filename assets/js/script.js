@@ -124,13 +124,13 @@ function saveBtnClickHandler() {
     }
 }
 
-function generateUniqueId() {
-    return Date.now().toString(); // Using a timestamp as a simple unique ID.
+function generateTimestamp() {
+    return Date.now().toString();
 }
 
 function saveToLocalStorage() {
     const currentNote = textArea.value;
-    localStorage.setItem(generateUniqueId(), currentNote);
+    localStorage.setItem(generateTimestamp(), currentNote);
 }
 
 function saveNoteSuccessMessage() {

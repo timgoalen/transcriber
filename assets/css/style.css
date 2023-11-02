@@ -36,8 +36,8 @@ body {
 
 header {
     /* height: 8%; */
-    height: 8vh;
-    height: 8dvh;
+    height: 9vh;
+    height: 9dvh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -58,7 +58,8 @@ h1 {
 }
 
 #text-container {
-    height: 84vh;
+    height: 82vh;
+    height: 82dvh;
     width: 100%;
     display: grid;
     place-items: center;
@@ -126,8 +127,8 @@ textarea {
 
 footer {
     /* height: 8%; */
-    height: 8vh;
-    height: 8dvh;
+    height: 9vh;
+    height: 9dvh;
     border-top: 1px solid var(--grey);
     display: grid;
     grid-template-columns: 1fr 1fr;
