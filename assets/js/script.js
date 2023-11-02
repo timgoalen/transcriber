@@ -12,6 +12,7 @@ const textArea = document.getElementById("text-area");
 const decreaseFontBtn = document.querySelector(".font-decrease");
 const increaseFontBtn = document.querySelector(".font-increase");
 const trashCan = document.querySelector(".fa-trash-can");
+const saveBtn = document.getElementById("save-btn");
 
 // Initialize variables
 let recognising = false;
@@ -42,7 +43,7 @@ recognition.onresult = function (event) {
         // pElement.textContent = finalTranscript;
         // textArea.appendChild(pElement);
         let interimText = textArea.value;
-        textArea.value = interimText + " " + finalTranscript;
+        textArea.value = interimText + finalTranscript;
         // readOutLoud(finalTranscript);
     }
 
@@ -80,7 +81,7 @@ recognition.onerror = function (event) {
 };
 
 // Initial font size
-let fontSize = 1.25;
+let fontSize = 1.4;
 
 // Function to increase font size
 function increaseFontSize() {
@@ -99,18 +100,59 @@ function clearText() {
 
 function readOutLoud(message) {
     var speech = new SpeechSynthesisUtterance();
-  
+
     // Set the text and voice attributes.
     speech.text = message;
     speech.volume = 1;
     speech.rate = 1;
     speech.pitch = 1;
-  
+
     window.speechSynthesis.speak(speech);
-  }
+}
+
+function generateUniqueId() {
+    return Date.now().toString(); // Using a timestamp as a simple unique ID.
+}
+
+function saveToLocalStorage() {
+    const currentNote = textArea.value;
+    localStorage.setItem(generateUniqueId(), JSON.stringify(currentNote));
+}
+
+// 1. Retrieve all items from local storage.
+function getAllSavedNotes() {
+    const notes = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const note = JSON.parse(localStorage.getItem(key));
+        notes.push(note);
+    }
+    return notes;
+}
+
+// 2. Iterate through the items.
+// const notes = getAllItemsFromLocalStorage();
+
+// 3. Create HTML elements to display each item.
+function createListItem(item) {
+    const listItem = document.createElement("div");
+    listItem.textContent = item.content;
+
+    // You can add more HTML elements and styles as needed.
+    return listItem;
+}
+
+// 4. Append the HTML elements to the container.
+// const container = document.querySelector("list-page-main");
+// items.forEach((item) => {
+//     const listItem = createListItem(item);
+//     container.appendChild(listItem);
+// });
 
 decreaseFontBtn.addEventListener("click", decreaseFontSize);
 
 increaseFontBtn.addEventListener("click", increaseFontSize);
 
 trashCan.addEventListener("click", clearText);
+
+saveBtn.addEventListener("click", saveToLocalStorage)
