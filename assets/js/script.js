@@ -1,23 +1,28 @@
+const controls = document.getElementById("controls");
+const microphoneContainer = document.getElementById("microphone-container");
+const microphoneIcon = document.getElementById("microphone-icon");
+const textContainer = document.getElementById("text-container");
+const textArea = document.getElementById("text-area");
+const modalContainer = document.getElementById("modal-container");
+const modalContent = document.getElementById("modal-content");
+const decreaseFontBtn = document.querySelector(".font-decrease");
+const increaseFontBtn = document.querySelector(".font-increase");
+const trashCan = document.querySelector(".fa-trash-can");
+const saveBtn = document.getElementById("save-btn");
+
+// Inititalize speach recognition
 try {
     var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 } catch (e) {
     alert("Your browser doesn't support speech recognition. Try using Chrome or Firefox.")
 }
 
-const controls = document.getElementById("controls");
-const microphoneContainer = document.getElementById("microphone-container");
-const microphoneIcon = document.getElementById("microphone-icon");
-const textContainer = document.getElementById("text-container");
-const textArea = document.getElementById("text-area");
-const decreaseFontBtn = document.querySelector(".font-decrease");
-const increaseFontBtn = document.querySelector(".font-increase");
-const trashCan = document.querySelector(".fa-trash-can");
-const saveBtn = document.getElementById("save-btn");
-
 // Initialize variables
 let recognising = false;
 let recognition = new SpeechRecognition();
 let paragraph = document.createElement("p");
+let fontSize = 1.4;
+saveBtn.disabled = true;
 
 // Set recognition settings
 recognition.continuous = true;
@@ -80,9 +85,6 @@ recognition.onerror = function (event) {
     console.error("Speech recognition error: " + event.error);
 };
 
-// Initial font size
-let fontSize = 1.4;
-
 // Function to increase font size
 function increaseFontSize() {
     fontSize += 0.2;
@@ -95,19 +97,31 @@ function decreaseFontSize() {
 }
 
 function clearText() {
-    textArea.innerHTML = "";
+    textArea.value = "";
 }
 
-function readOutLoud(message) {
-    var speech = new SpeechSynthesisUtterance();
+// function readOutLoud(message) {
+//     var speech = new SpeechSynthesisUtterance();
 
-    // Set the text and voice attributes.
-    speech.text = message;
-    speech.volume = 1;
-    speech.rate = 1;
-    speech.pitch = 1;
+//     // Set the text and voice attributes.
+//     speech.text = message;
+//     speech.volume = 1;
+//     speech.rate = 1;
+//     speech.pitch = 1;
 
-    window.speechSynthesis.speak(speech);
+//     window.speechSynthesis.speak(speech);
+// }
+
+// if (textArea.value == "") {
+//     saveBtn.disabled = true;
+// }
+
+function saveBtnClickHandler() {
+    if (textArea.value !== "") {
+        saveToLocalStorage();
+        saveNoteSuccessMessage();
+        clearText();
+    }
 }
 
 function generateUniqueId() {
@@ -117,6 +131,13 @@ function generateUniqueId() {
 function saveToLocalStorage() {
     const currentNote = textArea.value;
     localStorage.setItem(generateUniqueId(), JSON.stringify(currentNote));
+}
+
+function saveNoteSuccessMessage() {
+    modalContainer.style.display = "grid";
+    setTimeout(() => {
+        modalContainer.style.display = "none";
+    }, 700);
 }
 
 // 1. Retrieve all items from local storage.
@@ -155,4 +176,4 @@ increaseFontBtn.addEventListener("click", increaseFontSize);
 
 trashCan.addEventListener("click", clearText);
 
-saveBtn.addEventListener("click", saveToLocalStorage)
+saveBtn.addEventListener("click", saveBtnClickHandler);
