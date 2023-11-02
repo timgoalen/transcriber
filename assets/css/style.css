@@ -29,13 +29,15 @@ body {
     height: 100vh;
     height: 100dvh;
     /* font-family: Tahoma, sans-serif; */
-    font-family: 'Delius', cursive;
+    font-family: 'Delius', sans-serif;
     background-color: var(--white);
     color: var(--black);
 }
 
 header {
-    height: 8%;
+    /* height: 8%; */
+    height: 8vh;
+    height: 8dvh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -74,7 +76,7 @@ h1 {
 }
 
 textarea {
-    font-family: 'Delius', cursive;
+    font-family: 'Delius', sans-serif;
 }
 
 #modal-container {
@@ -123,7 +125,9 @@ textarea {
 }
 
 footer {
-    height: 8%;
+    /* height: 8%; */
+    height: 8vh;
+    height: 8dvh;
     border-top: 1px solid var(--grey);
     display: grid;
     grid-template-columns: 1fr 1fr;

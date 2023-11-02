@@ -130,7 +130,7 @@ function generateUniqueId() {
 
 function saveToLocalStorage() {
     const currentNote = textArea.value;
-    localStorage.setItem(generateUniqueId(), JSON.stringify(currentNote));
+    localStorage.setItem(generateUniqueId(), currentNote);
 }
 
 function saveNoteSuccessMessage() {
