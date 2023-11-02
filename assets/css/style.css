@@ -32,6 +32,8 @@ body {
     font-family: 'Delius', sans-serif;
     background-color: var(--white);
     color: var(--black);
+    /* background: linear-gradient(93deg, rgba(255,255,255,1) 20%, rgba(133,235,255,1) 100%); */
+
 }
 
 header {
@@ -89,6 +91,7 @@ textarea {
     display: none;
     place-items: center;
     background-color: rgba(33,33,33,0.3);
+    /* backdrop-filter: blur(3px); */
 }
 
 #modal-content {
@@ -99,8 +102,10 @@ textarea {
 }
 
 .list-page-main {
-    /* height: 84vh; */
+    height: 91vh;
+    height: 91dvh;
     /* width: 100%; */
+    overflow: scroll;
 }
 
 #new-note-icon {
@@ -215,10 +220,19 @@ p {
 }
 
 .item-text {
+    overflow: hidden;
+}
+
+.list-page-item p {
+    font-size: 1.2rem;
     padding: 0.2rem 0.5rem;
     line-height: 1.5;
-    max-height: 3.4rem;
+    /* width: 100%; */
+    /* max-height: 3.4rem; */
+    height: 2.2rem;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-tools {

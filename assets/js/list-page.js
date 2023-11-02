@@ -1,11 +1,10 @@
 const listPageContainer = document.querySelector(".list-page-main");
-const timestampIDs = Object.keys(localStorage);
 
+const timestampIDs = Object.keys(localStorage);
 // Sort the array into reverse chronological order
 timestampIDs.sort((a, b) => {
     return parseInt(b) - parseInt(a);
 });
-
 
 function addNoteToListView(id, note) {
     const noteHtml = `
@@ -20,12 +19,6 @@ function addNoteToListView(id, note) {
     `
     listPageContainer.innerHTML += noteHtml;
 }
-
-
-
-
-// Iterate through sorted keys and display the corresponding values
-
 
 function displaySavedNotes() {
     if (timestampIDs.length > 0) {
@@ -45,6 +38,7 @@ function displaySavedNotes() {
     }
 }
 
+// Display the notes before getting the btn html elements
 displaySavedNotes();
 
 function handleDeleteBtnClick() {
