@@ -13,7 +13,7 @@ function addNoteToListView(id, note) {
             <p>${note}</p>
         </div>
         <div class="item-tools">
-            <i class="fa-regular fa-trash-can" data-id="${id}"></i>
+            <i class="fa-solid fa-expand" data-id="${id}"></i>
         </div>
     </div>
     `

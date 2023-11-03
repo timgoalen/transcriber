@@ -5,9 +5,7 @@ const textContainer = document.getElementById("text-container");
 const textArea = document.getElementById("text-area");
 const modalContainer = document.getElementById("modal-container");
 const modalContent = document.getElementById("modal-content");
-const decreaseFontBtn = document.querySelector(".font-decrease");
-const increaseFontBtn = document.querySelector(".font-increase");
-const trashCan = document.querySelector(".fa-trash-can");
+const deleteBtn = document.getElementById("delete-btn");
 const saveBtn = document.getElementById("save-btn");
 
 // Inititalize speach recognition
@@ -21,7 +19,6 @@ try {
 let recognising = false;
 let recognition = new SpeechRecognition();
 let paragraph = document.createElement("p");
-let fontSize = 1.4;
 saveBtn.disabled = true;
 
 // Set recognition settings
@@ -84,17 +81,6 @@ microphoneIcon.addEventListener("click", function () {
 recognition.onerror = function (event) {
     console.error("Speech recognition error: " + event.error);
 };
-
-// Function to increase font size
-function increaseFontSize() {
-    fontSize += 0.2;
-    textArea.style.fontSize = fontSize + "rem";
-}
-
-function decreaseFontSize() {
-    fontSize -= 0.2;
-    textArea.style.fontSize = fontSize + "rem";
-}
 
 function clearText() {
     textArea.value = "";
@@ -170,10 +156,7 @@ function createListItem(item) {
 //     container.appendChild(listItem);
 // });
 
-decreaseFontBtn.addEventListener("click", decreaseFontSize);
 
-increaseFontBtn.addEventListener("click", increaseFontSize);
-
-trashCan.addEventListener("click", clearText);
+deleteBtn.addEventListener("click", clearText);
 
 saveBtn.addEventListener("click", saveBtnClickHandler);

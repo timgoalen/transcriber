@@ -179,7 +179,8 @@ footer {
     color: var(--blue);
 }
 
-#microphone-container {
+#microphone-container,
+#new-note-container {
     height: 54px;
     width: 54px;
     border-radius: 50%;
@@ -197,6 +198,11 @@ footer {
     box-shadow: var(--m3-elevation-light-2);
 }
 
+#new-note-container {
+    box-shadow: none;
+}
+
+
 #microphone-icon {
     /* text-decoration: none;
     color: #15c415; */
@@ -212,7 +218,7 @@ footer {
     border: 1px solid var(--grey);
     border-radius: 8px;
     display: grid;
-    grid-template-columns: 1fr 3rem;
+    grid-template-columns: 1fr 2.3rem;
 }
 
 .item-text {
@@ -239,7 +245,7 @@ footer {
 
 }
 
-.item-tools .fa-trash-can {
+.item-tools .fa-expand {
     color: var(--grey);
 }
 
