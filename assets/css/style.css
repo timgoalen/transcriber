@@ -82,7 +82,8 @@ textarea {
     font-family: 'Delius', sans-serif;
 }
 
-#modal-container {
+#modal-container,
+#edit-note-modal-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -249,3 +250,43 @@ footer {
     color: var(--grey);
 }
 
+#edit-note-modal-container {
+    display: none;
+    backdrop-filter: blur(2px);
+    background-color: rgb(226 223 223 / 80%);
+    z-index: 999;
+}
+
+#edit-note-modal-content {
+    border: 1px solid var(--grey);
+    border-radius: 8px;
+    /* padding: 1.4rem; */
+    background-color: var(--white);
+    width: 94%;
+    display: grid;
+    grid-template-rows: 1fr 3rem;
+}
+
+#edit-note-modal-text {
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+#edit-note-modal-tools-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--blue);
+    border-top: 1px solid var(--grey);
+    padding: 0 1rem;
+    font-size: 0.9rem;
+}
+
+#back-btn-modal,
+#edit-btn-modal,
+#delete-btn-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
