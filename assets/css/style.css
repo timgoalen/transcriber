@@ -125,20 +125,22 @@ textarea {
     cursor: pointer;
 } */
 
+/* -- FOOTER -- */
+
 .characters {
     color: var(--grey);
     font-size: 1rem;
 }
 
 footer {
-    /* height: 8%; */
     height: 9vh;
     height: 9dvh;
     border-top: 1px solid var(--grey);
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--blue);
 }
 
 .footer-left,
@@ -156,10 +158,22 @@ footer {
     padding-left: 10%;
 }
 
+#save-btn,
+#delete-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;;
+}
+
+.btn-text {
+    /* font-size: 1.1rem; */
+    /* color: var(--blue); */
+}
+
 .fa-list-ul,
 .fa-minus,
 .fa-plus,
-.fa-floppy-disk,
+.fa-arrow-up-from-bracket,
 .fa-trash-can,
 .fa-xmark {
     color: var(--blue);
@@ -188,27 +202,9 @@ footer {
     color: #15c415; */
 }
 
-#text-size-controls {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-.text-control {
-    /* margin: 0 20%; */
-}
 
-p {
-    /* font-size: 3rem; */
-    /* padding-bottom: 4%; */
-}
-
-/* .disabled-btn {
-    color: var(--grey);
-    pointer-events: none;
-} */
-
-/* LIST PAGE */
+/* -- LIST PAGE -- */
 
 .list-page-item {
     margin: 3% 3% 0 3%;
