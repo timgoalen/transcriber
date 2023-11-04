@@ -36,6 +36,13 @@ recognition.onresult = function (event) {
         } else {
             interimTranscript += transcript;
         }
+        // textArea.value += transcript;
+
+    }
+
+
+    if (interimTranscript) {
+        // textArea.value = interimTranscript;
     }
 
     // Create a new <p> element for each final transcript
@@ -50,6 +57,7 @@ recognition.onresult = function (event) {
 
     // Append interim transcript to the existing content
     // textArea.innerHTML += "<span style='color: gray;'>" + transcript + "</span>";
+
 };
 
 

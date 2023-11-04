@@ -254,7 +254,7 @@ footer {
 
 #edit-note-modal-container {
     display: none;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     background-color: rgb(226 223 223 / 80%);
     z-index: 999;
 }
