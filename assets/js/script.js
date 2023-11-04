@@ -19,7 +19,6 @@ try {
 let recognising = false;
 let recognition = new SpeechRecognition();
 let paragraph = document.createElement("p");
-saveBtn.disabled = true;
 
 // Set recognition settings
 recognition.continuous = true;
@@ -106,7 +105,8 @@ function saveBtnClickHandler() {
     if (textArea.value !== "") {
         saveToLocalStorage();
         saveNoteSuccessMessage();
-        clearText();
+        // clearText();
+        window.location.href = "list-page.html";
     }
 }
 
@@ -156,7 +156,10 @@ function createListItem(item) {
 //     container.appendChild(listItem);
 // });
 
+if (deleteBtn) {
+    deleteBtn.addEventListener("click", clearText);
+}
 
-deleteBtn.addEventListener("click", clearText);
-
-saveBtn.addEventListener("click", saveBtnClickHandler);
+if (saveBtn) {
+    saveBtn.addEventListener("click", saveBtnClickHandler);
+}

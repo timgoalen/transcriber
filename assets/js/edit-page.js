@@ -1,8 +1,22 @@
-// Your JavaScript code on page2.html
-var params = new URLSearchParams(window.location.search);
-var passedData = params.get("data");
 
-console.log({passedData}); // This will log the value of the "data" query parameter
+const params = new URLSearchParams(window.location.search);
+const passedData = params.get("data");
+const updateBtn = document.getElementById("update-btn");
+const cancelBtn = document.getElementById("cancel-btn");
 
 const note = localStorage.getItem(passedData);
 textArea.value = note;
+
+cancelBtn.addEventListener("click", () => {
+    window.location.href = "list-page.html";
+})
+
+function updateNote() {
+    id = passedData;
+    const updatedNote = textArea.value;
+    localStorage.setItem(id, updatedNote);
+    saveNoteSuccessMessage();
+    window.location.href = "list-page.html";
+}
+
+updateBtn.addEventListener("click", updateNote)
