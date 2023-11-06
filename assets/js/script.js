@@ -12,9 +12,14 @@ try {
     alert("Your browser doesn't support speech recognition. Try using Chrome or Firefox.");
 }
 
-// Global variables
+try {
+    var recognition = new SpeechRecognition();
+} catch (e) {
+    alert("Your browser doesn't support speech recognition. Try using Chrome or Firefox.");
+}
+
+// const recognition = new SpeechRecognition();
 let recognising = false;
-let recognition = new SpeechRecognition();
 
 // Recognition settings
 recognition.continuous = true;
@@ -43,19 +48,55 @@ function updateUiRecordingStopped() {
     textArea.style.border = "1px solid var(--grey)";
 }
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function lineBreak(string) {
+    return "\n" + string;
+}
+
+function punctuate(string) {
+    string = string.replace("full stop", ". ");
+    string = string.replace("comma", ", ");
+    // string = string.replace("new line", "\n");
+    return string;
+}
+
+function capitalizeAfterFullStop(string) {
+    const parts = string.split(". ");
+
+    for (let i = 0; i < parts.length; i++) {
+        if (parts[i].length >= 2) {
+            parts[i] = parts[i].substring(0, 1) + parts[i][1].toUpperCase() + parts[i].substring(2);
+        }
+    }
+
+    return parts.join(". ");
+}
+
 // -- RECOGNITION FUNCTIONALITY --
 
-recognition.onresult = function (event) {
+recognition.onresult = (event) => {
     let currentTranscript = "";
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
         currentTranscript = event.results[i][0].transcript;
+        console.log(currentTranscript);
+
     }
 
     if (currentTranscript) {
         const previousTranscript = textArea.value;
-        console.log(previousTranscript);
-        textArea.value = previousTranscript + currentTranscript;
+
+        // textArea.value = previousTranscript + capitalize(currentTranscript);
+        const punctuatedTranscript = punctuate(currentTranscript);
+        if (previousTranscript === "") {
+            textArea.value = previousTranscript + capitalize(punctuatedTranscript);
+        } else {
+            textArea.value = previousTranscript + capitalizeAfterFullStop(capitalize(punctuatedTranscript));
+        }
+        
     }
 };
 
