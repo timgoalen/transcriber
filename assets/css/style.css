@@ -113,19 +113,6 @@ textarea {
     color: var(--orange);
 }
 
-/* #controls {
-    height: 7%;
-    margin: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-} */
-
-/* #controls i {
-    font-size: 1.8rem;
-    cursor: pointer;
-} */
-
 /* -- FOOTER -- */
 
 .characters {
@@ -160,7 +147,7 @@ footer {
 }
 
 #save-btn,
-#delete-btn,
+#clear-btn,
 #update-btn,
 #cancel-btn {
     display: flex;
