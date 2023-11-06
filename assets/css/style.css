@@ -102,6 +102,23 @@ textarea {
     background-color: var(--white);
 }
 
+#canvas-container {
+    position: absolute;
+    /* background-color: blue; */
+    /* top: 9vh; */
+    /* top: 9dvh; */
+    left: 4%;
+    /* bottom: 9vh; */
+    bottom: 10dvh;
+    /* width: 5vw; */
+}
+
+canvas {
+    width: 98%;
+    height: 80vh;
+    height: 80dvh;
+}
+
 .list-page-main {
     height: 91vh;
     height: 91dvh;

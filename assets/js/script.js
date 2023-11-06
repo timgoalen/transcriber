@@ -113,6 +113,8 @@ function handleMicrophoneClick() {
         updateUiRecordingStopped();
     } else {
         recognition.start();
+        // For audio visualizer
+        // audioCtx.resume();
         updateUiRecordingStarted();
     }
 
