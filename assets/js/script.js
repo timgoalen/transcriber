@@ -4,6 +4,7 @@ const textArea = document.getElementById("text-area");
 const modalContainer = document.getElementById("modal-container");
 const clearBtn = document.getElementById("clear-btn");
 const saveBtn = document.getElementById("save-btn");
+const canvasContainer = document.getElementById("canvas-container");
 
 // Inititalize speach recognition
 try {
@@ -82,8 +83,6 @@ recognition.onresult = (event) => {
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
         currentTranscript = event.results[i][0].transcript;
-        console.log(currentTranscript);
-
     }
 
     if (currentTranscript) {
@@ -110,12 +109,16 @@ recognition.onerror = function (event) {
 function handleMicrophoneClick() {
     if (recognising) {
         recognition.stop();
+        // For audio visualizer
+        stopVisualizer();
+        canvasContainer.style.display = "none";
         updateUiRecordingStopped();
     } else {
         recognition.start();
         // For audio visualizer
-        // audioCtx.resume();
+        initVisualizer();
         updateUiRecordingStarted();
+        canvasContainer.style.display = "block";
     }
 
     recognising = !recognising;

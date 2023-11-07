@@ -58,6 +58,7 @@ h1 {
     display: grid;
     place-items: center;
     align-items: start;
+    position: relative;
 }
 
 #text-area {
@@ -96,13 +97,16 @@ textarea {
 #canvas-container {
     position: absolute;
     left: 4%;
-    bottom: 10dvh;
+    bottom: 2%;
+    width: 93%;
+    /* height: 98%; */
+    /* top: 2%; */
 }
 
 canvas {
-    width: 98%;
-    height: 80vh;
-    height: 80dvh;
+    width: 100%;
+    height: 9vh;
+    height: 9dvh;
 }
 
 .list-page-main {
