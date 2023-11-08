@@ -53,14 +53,13 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function lineBreak(string) {
-    return "\n" + string;
-}
-
 function punctuate(string) {
     string = string.replace("full stop", ". ");
     string = string.replace("comma", ", ");
-    // string = string.replace("new line", "\n");
+    string = string.replace("question mark", "? ");
+    string = string.replace("exclamation mark", "! ");
+    string = string.replace("new paragrpah", "\n\n");
+
     return string;
 }
 
@@ -68,9 +67,7 @@ function capitalizeAfterFullStop(string) {
     const parts = string.split(". ");
 
     for (let i = 0; i < parts.length; i++) {
-        if (parts[i].length >= 2) {
-            parts[i] = parts[i].substring(0, 1) + parts[i][1].toUpperCase() + parts[i].substring(2);
-        }
+        parts[i] = parts[i].substring(0, 1) + parts[i][1].toUpperCase() + parts[i].substring(2);
     }
 
     return parts.join(". ");
@@ -88,14 +85,13 @@ recognition.onresult = (event) => {
     if (currentTranscript) {
         const previousTranscript = textArea.value;
 
-        // textArea.value = previousTranscript + capitalize(currentTranscript);
         const punctuatedTranscript = punctuate(currentTranscript);
         if (previousTranscript === "") {
-            textArea.value = previousTranscript + capitalize(punctuatedTranscript);
+            textArea.value = capitalize(punctuatedTranscript);
         } else {
-            textArea.value = previousTranscript + capitalizeAfterFullStop(capitalize(punctuatedTranscript));
+            textArea.value = previousTranscript + capitalizeAfterFullStop(punctuatedTranscript);
         }
-        
+
     }
 };
 
