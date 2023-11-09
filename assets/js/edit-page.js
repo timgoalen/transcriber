@@ -1,4 +1,3 @@
-
 const params = new URLSearchParams(window.location.search);
 const passedData = params.get("data");
 const updateBtn = document.getElementById("update-btn");
