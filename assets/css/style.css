@@ -23,6 +23,10 @@ i {
     text-decoration: none;
 }
 
+a {
+    color: inherit;
+}
+
 body {
     height: 100vh;
     height: 100dvh;
@@ -71,6 +75,12 @@ h1 {
     line-height: 1.3;
 }
 
+/* Change the default editable div:focus? */
+/* textarea:focus { 
+    outline: none;
+    border: 1px solid var(--orange);;
+} */
+
 textarea {
     font-family: 'Delius', sans-serif;
 }
@@ -113,10 +123,6 @@ canvas {
     overflow: scroll;
 }
 
-#new-note-icon {
-    color: var(--orange);
-}
-
 /* -- FOOTER -- */
 
 .characters {
@@ -130,7 +136,6 @@ footer {
     border-top: 1px solid var(--grey);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* align-content: center; */
     font-size: 1.1rem;
     color: var(--blue);
 }
@@ -139,36 +144,40 @@ footer {
 .footer-right {
     display: grid;
     place-items: center;
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 400px; */
-}
-
-.footer-left {
-    /* padding: 0 20% 0 15%; */
-}
-
-.footer-right {
-    /* padding-left: 10%; */
 }
 
 #save-btn,
 #clear-btn,
 #update-btn,
-#cancel-btn {
+#cancel-btn,
+.list-view-btn-container {
     display: flex;
     flex-direction: column;
-    align-items: center;;
+    align-items: center;
+    color: var(--blue);
 }
 
-.fa-list-ul,
-.fa-minus,
-.fa-plus,
-.fa-arrow-up-from-bracket,
-.fa-trash-can,
-.fa-xmark {
-    color: var(--blue);
+#save-btn:hover,
+#clear-btn:hover,
+#update-btn:hover,
+#cancel-btn:hover,
+#back-btn-modal:hover,
+#edit-btn-modal:hover,
+#delete-btn-modal:hover,
+.list-view-btn-container:hover {
+    cursor: pointer;
+    color: #0B66C1;
+}
+
+#microphone-container:hover,
+#new-note-container:hover {
+    cursor: pointer;
+    color: #E77A0D;
+    border-color: #E77A0D;
+}
+.list-page-item:hover {
+    cursor: pointer;
+    border-color: var(--black);
 }
 
 #microphone-container,
@@ -251,7 +260,6 @@ footer {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    color: var(--blue);
     border-top: 1px solid var(--grey);
     padding: 0 1rem;
     font-size: 0.9rem;
@@ -263,6 +271,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--blue);
 }
 
 /* MEDIA QUERIES */
