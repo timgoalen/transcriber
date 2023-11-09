@@ -49,34 +49,34 @@ function updateUiRecordingStopped() {
     textArea.style.border = "1px solid var(--grey)";
 }
 
-function capitalize(string) {
+function capitalise(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function punctuate(string) {
-    string = string.replace("full stop", ". ");
-    string = string.replace("comma", ", ");
-    string = string.replace("question mark", "? ");
-    string = string.replace("exclamation mark", "! ");
-    string = string.replace("new paragrpah", "\n\n");
-
-    return string;
+function capitaliseNewSentence(string) {
+    return string.charAt(1).toUpperCase() + string.slice(2);
 }
 
-function capitalizeAfterFullStop(string) {
-    const parts = string.split(". ");
+function punctuate(string) {
+    string = string.replace(/(?:\s+|^)full stop(?:\s+|$)/g, '. ');
+    string = string.replace(/(?:\s+|^)comma(?:\s+|$)/g, ', ');
+    string = string.replace(/(?:\s+|^)queation mark(?:\s+|$)/g, '? ');
+    string = string.replace(/(?:\s+|^)exclamation mark(?:\s+|$)/g, '! ');
+    string = string.replace("new paragraph", "\n\n");
+    string = string.replace("hyphen", "-");
+    // string = string.replace("colon", ":");
+    // string = string.replace("semi colon", ";");
+    // string = string.replace("underscore", "_");
 
-    for (let i = 0; i < parts.length; i++) {
-        parts[i] = parts[i].substring(0, 1) + parts[i][1].toUpperCase() + parts[i].substring(2);
-    }
-
-    return parts.join(". ");
+    return string;
 }
 
 // -- RECOGNITION FUNCTIONALITY --
 
 recognition.onresult = (event) => {
     let currentTranscript = "";
+    const capitaliseAfterThese = [".", "!", "?"];
+    console.log(capitaliseAfterThese);
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
         currentTranscript = event.results[i][0].transcript;
@@ -84,14 +84,21 @@ recognition.onresult = (event) => {
 
     if (currentTranscript) {
         const previousTranscript = textArea.value;
-
         const punctuatedTranscript = punctuate(currentTranscript);
-        if (previousTranscript === "") {
-            textArea.value = capitalize(punctuatedTranscript);
-        } else {
-            textArea.value = previousTranscript + capitalizeAfterFullStop(punctuatedTranscript);
-        }
 
+        if (previousTranscript === "") {
+            textArea.value = capitalise(punctuatedTranscript);
+        } else {
+            console.log({previousTranscript});
+            console.log({currentTranscript});
+            let lastCharacter = previousTranscript.charAt(previousTranscript.length - 2);
+            console.log(lastCharacter);
+            if (capitaliseAfterThese.includes(lastCharacter)) {
+                textArea.value = previousTranscript + capitaliseNewSentence(punctuatedTranscript);
+            } else {
+                textArea.value = previousTranscript + punctuatedTranscript;
+            }
+        }
     }
 };
 
